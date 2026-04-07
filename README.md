@@ -1,137 +1,299 @@
-# Bizmetric E-Commerce Data Engineering Project
+# E-Commerce Order Processing Pipeline (End-to-End Data Engineering Project)
 
-## Overview
-
-This project is an end-to-end data engineering and analytics solution built on Microsoft Azure and Databricks. It implements a complete data pipeline using Medallion Architecture (Bronze, Silver, Gold) and integrates data ingestion, transformation, analytics, machine learning experiments, and visualization.
-
-The system processes e-commerce data (Products and Carts) ingested via APIs, stored in Azure Data Lake Storage Gen2, transformed using Databricks, and visualized using Power BI dashboards. A Flask-based frontend application is also developed with authentication and data interaction capabilities.
+**Rohit Malode**
 
 ---
 
-## Architecture
+## 1. Project Overview
 
-The project follows a modern cloud-based data engineering architecture:
+This project implements a scalable end-to-end data pipeline for an e-commerce platform using Azure and Databricks. The pipeline ingests raw order and product data from APIs, processes it through a Medallion Architecture (Bronze, Silver, Gold), and delivers business insights via dashboards and analytics.
 
-1. Data Ingestion
-   - Azure Data Factory (ADF) pulls data from APIs (Products and Carts)
-   - Data is stored in Azure Data Lake Storage Gen2 (Bronze Layer)
-
-2. Data Processing (Medallion Architecture)
-   - Bronze Layer: Raw ingested JSON data
-   - Silver Layer: Cleaned, transformed, and structured data
-   - Gold Layer: Aggregated business-ready data
-
-3. Data Transformation
-   - Databricks notebooks using PySpark
-   - Incremental load handling for new incoming data
-   - Data quality checks and validation
-
-4. Data Governance
-   - Unity Catalog used for centralized governance and access control
-   - External locations configured for secure access to ADLS
-
-5. Analytics and Visualization
-   - Databricks dashboards for exploratory analysis
-   - Power BI dashboards for business reporting
-
-6. Application Layer
-   - Flask web application with login system
-   - Face recognition-based authentication using machine learning
-   - Data upload and analytics interface
-
----
-
-## Project Workflow
-
-1. API data ingestion using Azure Data Factory
-2. Storage in ADLS Gen2 (Bronze layer)
-3. Data transformation using Databricks notebooks
-4. Structured data stored in Silver layer
-5. Business-level aggregations stored in Gold layer
-6. Statistical analysis performed using Python notebooks
-7. Power BI dashboards created from Gold layer data
-8. Flask application developed for user interaction
-9. Orchestration handled via ADF pipelines and Databricks jobs
-
----
-
-## Technologies Used
-
-- Microsoft Azure Data Factory
-- Azure Data Lake Storage Gen2
-- Databricks (PySpark, SQL)
+The system supports:
+- Medallion Architecture
 - Unity Catalog
-- Python (Pandas, NumPy, SciPy, Scikit-learn)
-- Power BI
-- Flask
-- HTML, CSS, JavaScript
-- Machine Learning (Face Recognition)
+- Incremental data processing  
+- Data quality transformations  
+- Statistical analysis  
+- End-to-end orchestration  
+- BI reporting and visualization
+- Flask based Website
+- Machine learning  
+
+It represents a production-like data engineering workflow using modern cloud technologies.
 
 ---
 
-## Medallion Architecture
+## 2. Architecture Overview
 
-### Bronze Layer
-- Raw JSON data from APIs
-- Stored without transformation
-- Used for auditing and replayability
+### Data Flow
 
-### Silver Layer
-- Cleaned and standardized datasets
-- Removed duplicates and null handling
-- Structured schema applied
-
-### Gold Layer
-- Aggregated business metrics
-- Used for dashboards and reporting
-- Optimized for analytics queries
+API (DummyJSON)  
+→ Azure Data Factory (ADF)  
+→ Azure Data Lake Storage Gen2 (Bronze)  
+→ Databricks (Bronze → Silver → Gold)  
+→ Azure SQL / Microsoft Fabric Warehouse  
+→ Power BI / Databricks Dashboard  
+→ Flask Frontend Application  
 
 ---
 
-## Key Features
+### Data Layers
 
-- End-to-end data pipeline implementation
-- API-based data ingestion
-- Incremental data loading mechanism
-- Medallion architecture design
-- Statistical hypothesis testing (t-test, ANOVA, Chi-square)
-- Logging and monitoring implementation
-- Face recognition authentication system
-- Interactive dashboards using Power BI
-- Flask-based web interface for data interaction
+#### Bronze Layer
+- Raw ingestion from APIs
+- Stores unprocessed JSON data
 
----
+#### Silver Layer
+- Data cleaning and transformation
+- Handles schema standardization and null values
+- Flattens nested JSON structures
 
-## Statistical Analysis
-
-The project includes statistical experiments:
-- T-test for comparing means
-- ANOVA for multi-group comparison
-- Chi-square test for categorical relationships
-
-These analyses help validate data relationships and business hypotheses.
+#### Gold Layer
+- Aggregated business-ready data
+- KPI generation and analytics datasets
 
 ---
 
-## Challenges Faced
+## 3. Technologies Used
 
-- Handling nested JSON structures from API responses
-- Implementing incremental data loading in Databricks
-- Ensuring data consistency across Medallion layers
-- Managing schema evolution in Delta tables
-- Orchestrating multi-step pipelines in ADF
-
----
-
-## Future Enhancements
-
-- Migration of entire pipeline to Microsoft Fabric
-- Real-time streaming ingestion using event-based triggers
-- Sentiment analysis on customer reviews
-- Sales and demand forecasting using machine learning models
-- Advanced monitoring and alerting system
-- API-based real-time dashboard updates
+| Category        | Tools |
+|----------------|------|
+| Data Ingestion  | Azure Data Factory (ADF), REST APIs |
+| Storage         | Azure Data Lake Storage Gen2 |
+| Processing      | Azure Databricks (PySpark) |
+| Governance      | Unity Catalog |
+| Warehousing     | Azure SQL / Microsoft Fabric |
+| Visualization   | Power BI, Databricks Dashboards |
+| Orchestration   | Azure Data Factory Pipelines |
+| Backend         | Flask (Python) |
+| Analytics       | Statistical Testing (ANOVA, T-Test, Chi-Square) |
 
 ---
 
-## Project Structure
+## 4. Data Sources
+
+- Products API: https://dummyjson.com/products  
+- Carts API: https://dummyjson.com/carts  
+
+Data Format: JSON (nested structure)
+
+---
+
+## 5. Data Ingestion (Bronze Layer)
+
+- Used Azure Data Factory Copy Activity to ingest API data
+- Stored raw JSON data into ADLS Gen2 Bronze container
+- Created structured directories for:
+  - Products
+  - Carts
+- Maintained metadata in a separate container
+
+---
+
+## 6. Data Storage Design
+
+### ADLS Container Structure
+
+- Bronze → Raw data  
+- Silver → Cleaned data  
+- Gold → Aggregated data  
+- Metastore → Metadata management  
+
+---
+
+## 7. Databricks & Unity Catalog
+
+### Setup
+- Configured Access Connector
+- Created Service Principal authentication
+- Established Unity Catalog Metastore
+- Assigned admin permissions
+
+### Unity Catalog Advantages
+
+- Centralized data governance  
+- Fine-grained access control (row/column level security)  
+- Data lineage tracking  
+- Secure external data access  
+- Multi-workspace data sharing  
+
+---
+
+## 8. Data Processing (Medallion Architecture)
+
+### Bronze Notebook
+- Reads raw JSON from ADLS
+- Applies schema inference
+- Stores data in Delta format
+
+### Silver Notebook
+- Handles nested JSON flattening (major challenge)
+- Removes duplicates
+- Handles null values
+- Standardizes schema
+
+### Gold Notebook
+- Performs aggregations for analytics
+- Generates KPIs:
+  - Daily revenue
+  - Top-selling products
+  - User behavior metrics
+
+---
+
+## 9. Incremental Data Load
+
+Implemented incremental processing using:
+- Unique identifiers (order ID / product ID)
+- Timestamp-based filtering
+- Processing only new or updated records
+
+Benefits:
+- Improved performance
+- Reduced compute cost
+- Efficient pipeline execution
+
+---
+
+## 10. Orchestration (ADF Pipeline)
+
+Pipeline consists of:
+
+- 2 Copy Activities (API → ADLS)
+- Databricks Notebook Activities:
+  - Bronze processing
+  - Silver processing
+  - Gold processing
+
+Features:
+- Dependency chaining
+- Automated workflow execution
+- End-to-end orchestration
+
+---
+
+## 11. Data Warehousing (Fabric Integration)
+
+Two approaches used:
+- Mirroring
+- Dataflow integration
+
+Gold layer data is loaded into:
+- Lakehouse
+- Warehouse
+
+---
+
+## 12. Dashboard & Visualization
+
+### Databricks Dashboard
+- Pipeline monitoring
+- KPI visualization
+- Data validation metrics
+
+### Power BI Dashboard
+- Revenue trends
+- Product performance analysis
+- Customer insights
+- Two-page business report
+
+---
+
+## 13. Logging & Monitoring
+
+- Created dedicated logging notebook
+- Captured pipeline execution logs
+- Implemented debugging and tracking mechanisms
+
+---
+
+## 14. Statistical Analysis
+
+Applied statistical methods to derive insights:
+
+### ANOVA Test
+Used to analyze differences in cart totals across categories.
+
+### T-Test
+Used to compare cart totals vs discounted totals.
+
+### Chi-Square Test
+Used to analyze relationship between product category and availability.
+
+### Conclusion
+These tests help identify:
+- Category performance differences  
+- Discount impact on spending  
+- Inventory dependency patterns  
+
+---
+
+## 15. Frontend Application (Flask)
+
+### Features
+- User login system
+- Face recognition-based authentication (ML model)
+- Navigation dashboard:
+  - Project overview
+  - Analytics
+  - Dashboards
+
+---
+
+## 16. Automation Enhancement
+
+- Implemented ADF pipeline trigger
+- Integrated email notification using Outlook
+- Success alerts sent after pipeline execution
+- Automated ETL workflow monitoring
+
+---
+
+## 17. Challenges Faced
+
+### 1. Flattening Nested JSON
+- Complex hierarchical API structures
+- Solved using PySpark explode and struct functions
+
+### 2. Incremental Loading
+- Avoiding duplicate processing
+- Designed efficient filtering logic using timestamps and IDs
+
+---
+
+## 18. Future Enhancements
+
+- Migration to Microsoft Fabric end-to-end
+- Sentiment analysis on product reviews
+- Sales forecasting using ML models
+- Event-based triggers for real-time pipelines
+- Streaming ingestion using Kafka / Event Hubs
+
+---
+
+## 19. Key Achievements
+
+- Built production-like data engineering pipeline
+- Implemented Medallion Architecture
+- Achieved incremental data processing
+- Integrated multiple Azure services
+- Developed BI dashboards and analytics layer
+- Built ML-based face recognition login system
+- Performed statistical hypothesis testing
+
+---
+
+## 20. Conclusion
+
+This project demonstrates strong expertise in:
+
+- End-to-end data engineering workflows
+- Cloud-based architecture design
+- Data transformation using PySpark
+- Pipeline orchestration using Azure Data Factory
+- Business intelligence and analytics
+- Machine learning integration
+- Flask-based application development
+- Statistical analysis for business insights
+
+It reflects a real-world scalable, maintainable, and production-ready data engineering solution.
