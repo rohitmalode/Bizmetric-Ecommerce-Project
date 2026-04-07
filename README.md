@@ -21,7 +21,8 @@ The system supports:
 
 It represents a production-like data engineering workflow using modern cloud technologies.
 
-![Uploading Project WorkFlow.png…]()
+<img width="1408" height="768" alt="Project WorkFlow" src="https://github.com/user-attachments/assets/41267e91-fd9e-4b46-84cf-3bf6960e4ebe" />
+
 
 ---
 
