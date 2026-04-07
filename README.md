@@ -52,9 +52,6 @@ API (DummyJSON)
 - Aggregated business-ready data
 - KPI generation and analytics datasets
   
-  <img width="1197" height="782" alt="Screenshot 2026-04-03 164959" src="https://github.com/user-attachments/assets/2c30a286-9644-470f-9642-282fefb0b7ef" />
-
-
 ---
 
 ## 3. Technologies Used
@@ -147,7 +144,7 @@ Data Format: JSON (nested structure)
   - Daily revenue
   - Top-selling products
   - User behavior metrics
-
+ <img width="1197" height="782" alt="Screenshot 2026-04-03 164959" src="https://github.com/user-attachments/assets/2c30a286-9644-470f-9642-282fefb0b7ef" />
 ---
 
 ## 9. Incremental Data Load
