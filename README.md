@@ -51,6 +51,7 @@ API (DummyJSON)
 #### Gold Layer
 - Aggregated business-ready data
 - KPI generation and analytics datasets
+  
   <img width="1197" height="782" alt="Screenshot 2026-04-03 164959" src="https://github.com/user-attachments/assets/2c30a286-9644-470f-9642-282fefb0b7ef" />
 
 
@@ -90,6 +91,9 @@ Data Format: JSON (nested structure)
   - Carts
 - Maintained metadata in a separate container
 
+  <img width="1902" height="781" alt="Screenshot 2026-04-02 183843" src="https://github.com/user-attachments/assets/7fd05d56-f7c8-4a57-8746-a5def4789294" />
+
+
 ---
 
 ## 6. Data Storage Design
@@ -99,8 +103,8 @@ Data Format: JSON (nested structure)
 - Bronze → Raw data  
 - Silver → Cleaned data  
 - Gold → Aggregated data  
-- Metastore → Metadata management  
-
+- Metastore → Metadata management
+  
 ---
 
 ## 7. Databricks & Unity Catalog
@@ -110,6 +114,9 @@ Data Format: JSON (nested structure)
 - Created Service Principal authentication
 - Established Unity Catalog Metastore
 - Assigned admin permissions
+
+  <img width="1887" height="803" alt="Screenshot 2026-04-07 124250" src="https://github.com/user-attachments/assets/455cb161-ed4b-4525-8984-2ebf3ee7db45" />
+
 
 ### Unity Catalog Advantages
 
@@ -184,6 +191,9 @@ Gold layer data is loaded into:
 - Lakehouse
 - Warehouse
 
+  <img width="1656" height="799" alt="Screenshot 2026-04-05 190923" src="https://github.com/user-attachments/assets/16ecfcbf-d129-4e83-baf6-869852162e2d" />
+
+
 ---
 
 ## 12. Dashboard & Visualization
@@ -199,6 +209,10 @@ Gold layer data is loaded into:
 - Customer insights
 - Two-page business report
 
+<img width="1147" height="645" alt="Power Bi 1st Main" src="https://github.com/user-attachments/assets/9899f201-7578-4342-8854-17ab47f3bd8d" />
+<img width="1200" height="674" alt="Power Bi 2nd page" src="https://github.com/user-attachments/assets/2fe0e0c3-9187-4560-861c-c87878942ee8" />
+<img width="1657" height="792" alt="Databricks Dashboard" src="https://github.com/user-attachments/assets/5c6b8417-1adf-4d0c-a67d-9e1c9de32185" />
+
 ---
 
 ## 13. Logging & Monitoring
@@ -206,6 +220,8 @@ Gold layer data is loaded into:
 - Created dedicated logging notebook
 - Captured pipeline execution logs
 - Implemented debugging and tracking mechanisms
+
+<img width="920" height="468" alt="Screenshot 2026-04-07 111818" src="https://github.com/user-attachments/assets/316f0d61-fa1c-4793-abbf-e230f1163053" />
 
 ---
 
@@ -240,6 +256,11 @@ These tests help identify:
   - Analytics
   - Dashboards
 
+<img width="1891" height="812" alt="Frontend Login Page" src="https://github.com/user-attachments/assets/44b6d027-f833-48fb-b415-5d46e29556e6" />
+<img width="1903" height="807" alt="Screenshot 2026-04-06 224737" src="https://github.com/user-attachments/assets/68499f84-3009-4342-9d9a-71861c7c14fb" />
+<img width="1872" height="815" alt="Frontend Project Overview" src="https://github.com/user-attachments/assets/82d09129-dbb1-47ec-a925-1e5956bb949f" />
+<img width="1538" height="868" alt="Screenshot 2026-04-06 224819" src="https://github.com/user-attachments/assets/38a7a3a2-2662-49ca-822e-effb7bcfba0e" />
+
 ---
 
 ## 16. Automation Enhancement
@@ -248,6 +269,8 @@ These tests help identify:
 - Integrated email notification using Outlook
 - Success alerts sent after pipeline execution
 - Automated ETL workflow monitoring
+
+<img width="861" height="436" alt="Screenshot 2026-04-05 190943" src="https://github.com/user-attachments/assets/5ecd65a2-fb42-49ed-944a-3c8d7b0e7077" />
 
 ---
 
