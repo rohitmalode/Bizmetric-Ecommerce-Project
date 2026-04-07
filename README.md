@@ -176,6 +176,9 @@ Features:
 - Automated workflow execution
 - End-to-end orchestration
 
+  <img width="1902" height="781" alt="Screenshot 2026-04-02 183843" src="https://github.com/user-attachments/assets/a5874dfc-f146-410d-8b68-d62f86498266" />
+
+
 ---
 
 ## 11. Data Warehousing (Fabric Integration)
